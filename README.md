@@ -1,3 +1,7 @@
+![Django](https://img.shields.io/badge/Django-5.2-green)
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
 🖼️ BG Remover – Django + Remove.bg API
 AI-powered background remover built with Django 5 and Remove.bg Official API.
 Supports:
