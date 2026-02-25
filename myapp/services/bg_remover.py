@@ -1,14 +1,9 @@
-# myapps/services/bg_remover.py
-
 import os
 import uuid
 import requests
 from PIL import Image
 
-# =========================================
-# CONFIG
-# =========================================
-
+# ========== CONFIG ========== #
 REMOVE_BG_API_KEY = os.getenv("REMOVE_BG_API_KEY")
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -17,10 +12,7 @@ MEDIA_DIR = os.path.join(BASE_DIR, "media")
 ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png"}
 
 
-# =========================================
-# SESSION BASED FOLDER
-# =========================================
-
+# ========== SESSION BASED FOLDER ========== #
 def create_user_folder():
     session_id = str(uuid.uuid4())
 
@@ -33,10 +25,7 @@ def create_user_folder():
     return session_id, upload_dir, result_dir
 
 
-# =========================================
-# REMOVE.BG OFFICIAL API CALL
-# =========================================
-
+# ========== REMOVE.BG OFFICIAL API CALL ========== #
 def remove_bg_api(input_path, output_path):
 
     if not REMOVE_BG_API_KEY:
@@ -65,10 +54,7 @@ def remove_bg_api(input_path, output_path):
         out.write(response.content)
 
 
-# =========================================
-# MAIN PROCESS
-# =========================================
-
+# ========== MAIN PROCESS ========== #
 def process_image_files(files):
 
     session_id, upload_dir, result_dir = create_user_folder()
@@ -93,7 +79,7 @@ def process_image_files(files):
         result_name = f"{uid}.png"
         result_path = os.path.join(result_dir, result_name)
 
-        # 🔥 OFFICIAL API CALL
+        # OFFICIAL API CALL
         remove_bg_api(input_path, result_path)
 
         results.append({

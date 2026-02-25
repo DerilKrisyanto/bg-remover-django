@@ -18,7 +18,7 @@ function showState(name) {
     document.querySelector('.state-' + name).classList.add('active');
 }
 
-/* MODE SWITCH */
+// ========== MODE SWITCH ========== //
 modeButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         modeButtons.forEach(b => b.classList.remove('active'));
@@ -31,7 +31,7 @@ modeButtons.forEach(btn => {
     });
 });
 
-/* DROPZONE */
+// ========== DROPZONE ========== //
 dropzone.addEventListener('click', () => fileInput.click());
 
 dropzone.addEventListener('dragover', e => {
@@ -60,7 +60,7 @@ dropzone.addEventListener('drop', e => {
     handleFiles();
 });
 
-/* FILE SELECT */
+// ========== FILE SELECT ========== //
 fileInput.addEventListener('change', handleFiles);
 
 function handleFiles() {
@@ -94,7 +94,7 @@ function handleFiles() {
     showState('preview');
 }
 
-/* PROCESS */
+// ========== PROCESS ========== //
 document.getElementById('removeBg').onclick = async () => {
 
     if (!fileInput.files.length) return;
@@ -157,7 +157,7 @@ document.getElementById('removeBg').onclick = async () => {
     }
 };
 
-/* DOWNLOAD */
+// ========== DOWNLOAD ========== //
 downloadBtn.onclick = async () => {
 
     if (!lastResults.length || !lastSession) return;
@@ -187,7 +187,7 @@ downloadBtn.onclick = async () => {
             window.URL.revokeObjectURL(url);
         }
 
-        // 🔥 cleanup setelah SEMUA download selesai
+        // auto cleanup setelah SEMUA download selesai
         await fetch('/bg/cleanup/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -201,7 +201,7 @@ downloadBtn.onclick = async () => {
     }
 };
 
-/* CHANGE IMAGE */
+// ========== CHANGE IMAGE ========== //
 document.getElementById('changeImage').onclick = async () => {
 
     if (lastSession) {
@@ -215,7 +215,7 @@ document.getElementById('changeImage').onclick = async () => {
     resetAll();
 };
 
-/* PROCESS ANOTHER */
+// ========== PROCESS ANOTHER ========== //
 document.getElementById('processAnother').onclick = async () => {
 
     if (lastSession) {
